@@ -18,18 +18,20 @@
 # 
 # Licença: Software de uso livre e código aberto.
 
-BIN = ./bin
 SRC = ./src
-F90 = $(shell ls $(SRC) | sed 's/^/\.\/bin\//')
-LISTA =  $(F90:.f90=.x)
+BIN = ./bin
+CC = gfortran
+LISTA = $(notdir $(wildcard ./src/*.f90))
+TMP = $(addprefix $(BIN)/, $(LISTA))
+DEP = $(TMP:.f90=.x)
 
-all:	$(LISTA)
+all:	$(DEP)
 
 $(BIN)/%.x:	$(SRC)/%.f90
-	gfortran $< -o $@
+	$(CC) $< -o $@
 
 %:	$(BIN)/%.x
 	$<
 
 clean:
-	rm $(BIN)/*.x
+	rm $(DEP)
