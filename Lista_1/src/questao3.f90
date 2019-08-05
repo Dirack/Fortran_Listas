@@ -26,6 +26,6 @@ i = nint(2.*3.141593/a) ! 2* 3.141593/0.05
 ! A divisão é feita nos inteiros (5/3) = 1
 a = a * (5/3) ! (5/3=1) *0.05 = 0.05
 
-WRITE(*,*) i, a
+WRITE(*,*) "i=", i, " a=", a
 
 END PROGRAM quiz_1
