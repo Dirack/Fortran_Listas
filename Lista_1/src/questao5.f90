@@ -1,24 +1,59 @@
-program consumo
+PROGRAM questao5
+!
+! questao5.f90 (Fortran)
+! 
+! Objetivo: Resolução da questão 5 da Lista 1 de
+! Programação em FORTRAN. Esse programa mede o rendimento
+! médio de um automóvel. O usuário irá fornecer o consumo em 
+! litros e os quilômetros rodados em uma viagem qualquer.
+! Após fornecer todos os valores, digita -1 para parar finalizar,
+! e recebe como resultado o consumo médio.
+! 
+! Versão 1.0
+! 
+! Site: http://www.dirackslounge.online
+! 
+! Programador: Rodolfo A. C. Neves (Dirack) 07/04/2018
+! 
+! Email: rodolfo_profissional@hotmail.com
+! 
+! Licença: Software de uso livre e código aberto.
 
-implicit none
+IMPLICIT NONE !Não permitir variável implícita
 
-integer :: i,erro ! Contador da serie e erro na leitura
-real :: l,km,sl,skm ! litros e quilometros
+REAL:: litros ! Consumo em litros
+REAL:: km ! Quilômetros rodados
+REAL:: media=0 ! Consumo médio
+INTEGER:: i=0 ! Número de entradas
 
-i=0
-sl=0.
-km=0.
-do
-	write(*,*) 'Quantos litros? (-1 para terminar)'
-	read(*,*) l
-	if (l==-1.) exit
-	write(*,*) 'Quantos quilometros?'
-	read(*,*) km
-	write(*,*) 'Quilometros/litro:',km/l
-	sl=sl+l
-	skm=skm+km
-end do
+! Laço para receber os valores digitados pelo usuário
+! Digite -1 para sair
+DO
 
-write(*,*) 'A média geral de km/l foi',skm/sl
+	WRITE(*,*) "Quantos Litros (-1 PARA SAIR): "
+	READ(*,*) litros
 
-end program consumo
+	! condição de saída, se é apenas um comando
+	! o IF pode estar em apenas uma linha
+	IF(litros == -1) EXIT
+
+	WRITE(*,*) "Quantos quilômetros: "
+	READ(*,*) km
+
+	! Forneça o rendimento daquela viagem ao usuário
+	WRITE(*,*) "Quilômetros/Litro: ", km/litros
+
+	! Incremente o contador do número de entradas
+	i = i + 1
+
+	! média recebe a soma dos rendimentos
+	media = media + km/litros
+
+END DO
+
+! O consumo médio é a soma do consumos (armazenada na variável média)
+! Pelo número de valores fornecidos pelo usuário
+WRITE(*,*) "A média geral de km/l é:", media/i
+
+
+END PROGRAM
