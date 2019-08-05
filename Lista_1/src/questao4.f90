@@ -15,12 +15,18 @@ PROGRAM triangulo
 ! Licença: Software de uso livre e código aberto.
 IMPLICIT NONE
 
-REAL :: a, b, c, teta
+REAL :: a, b, c, teta ! Teste usando trio pitagórico 3, 4, 5
+REAL:: PI_=4*atan(1.) ! atan(1)=PI/4=45°
+REAL:: angulo=atan(3./4.)
 
+WRITE(*,*) angulo*180./PI_
 WRITE(*,*) 'Digite o comprimento da hipotenusa:'
 READ(*,*) c
 WRITE(*,*) 'Digite o ângulo TETA em graus:'
 READ(*,*) teta
+
+! Transformar teta para radianos
+teta = (teta * PI_)/180.
 
 ! O programa irá funcionar, porém irá produzir o valor incorreto
 ! O argumento das funções 'cos' e 'sin' é o ângulo em radianos
